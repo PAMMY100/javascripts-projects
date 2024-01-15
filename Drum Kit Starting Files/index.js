@@ -16,6 +16,8 @@ for (let x = 0; x < btnLen; x++) {
   document.querySelectorAll(".drum")[x].addEventListener('click', function() {
     let buttonElement = this.innerText;
     playSound(buttonElement);
+
+    addAnimation(buttonElement);
   });
 }
 
@@ -24,6 +26,8 @@ for (let x = 0; x < btnLen; x++) {
 //detecting keyboard press
 document.addEventListener("keydown", (event) => {
  playSound(event.key);
+
+ addAnimation(event.key)
 })
 
 function playSound(key) {
@@ -52,4 +56,13 @@ function playSound(key) {
 
     default:
   }
+}
+
+function addAnimation(currentkey) {
+  let activeBtn = document.querySelector("." + currentkey);
+
+  activeBtn.classList.add("pressed");
+  setTimeout(() => {
+    activeBtn.classList.remove("pressed");
+  },100);
 }
